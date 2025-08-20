@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
-const TodoList = () => {
-  let url = "http://localhost:3001/todos"
-  let [data,setData] = useState(null);
-   useEffect(()=>{
-    fetch(url)
-    .then(res=>res.json())
-    .then(data=>setData(data))
-    
-  },[])
+const TodoList = ({todos}) => {
+
   return (
      <ul className="todo-list">
-          {data && data.map((todo)=><li className="todo-item-container" key={todo.id}>
+          {todos && todos.map((todo)=><li className="todo-item-container" key={todo.id}>
             <div className="todo-item">
               <input type="checkbox" />
-              <span className="todo-item-label">{todo.title}</span>
+              <span className={`todo-item-label ${todo.completed ? 'line-through' : ''}`}>{todo.title}</span>
               {/* <input type="text" className="todo-item-input" value="Finish React Series" /> */}
             </div>
             <button className="x-button">

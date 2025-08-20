@@ -1,14 +1,19 @@
 {
-    "todos":[
-        {
-            "id":1,
-            "title":"My First Todo",
-            "completed":false
-        },
-           {
-            "id":2,
-            "title":"My Second Todo",
-            "completed":false
-        }
-    ]
+  "todos": [
+    {
+      "id": 1,
+      "title": "My First Todo",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "title": "My Second Todo",
+      "completed": false
+    },
+    {
+      "id": 0.34074804418098215,
+      "title": "Third",
+      "completed": false
+    }
+  ]
 }
