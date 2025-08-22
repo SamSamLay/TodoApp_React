@@ -1,12 +1,31 @@
-import React from 'react'
+import React,{useState} from 'react'
 
-function Todo({todo,deleteTodo}) {
+function Todo({todo,deleteTodo,updateTodo}) {
+
+  let [isEdit,setIsEdit] = useState(false);
+  let [title,setTitle] = useState(todo.title)
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    let updatedTodo = {
+      id:todo.id,
+      //id:Math.floor(Math.random() * 10),
+      title,
+      completed:todo.completed
+    }
+    updateTodo(updatedTodo)
+    setIsEdit(false);
+  }
+
   return (
     <li className="todo-item-container">
             <div className="todo-item">
               <input type="checkbox" />
-              <span className={`todo-item-label ${todo.completed ? 'line-through' : ''}`}>{todo.title}</span>
-              {/* <input type="text" className="todo-item-input" value="Finish React Series" /> */}
+             {!isEdit && <span onDoubleClick={()=>setIsEdit(true)} className={`todo-item-label ${todo.completed ? 'line-through' : ''}`}>{todo.title}</span>}
+              {isEdit && 
+              <form onSubmit={handleSubmit}>
+                <input type="text" className="todo-item-input" value={title} onChange={(e)=>setTitle(e.target.value)}/>
+              </form> }
             </div>
             <button className="x-button">
               <svg

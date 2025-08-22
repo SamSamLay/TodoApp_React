@@ -7,8 +7,8 @@ const TodoForm = ({addTodo}) => {
   const handleSubmit = (e)=>{
     e.preventDefault();
     let todo = {
-      //id:Math.random(),
-      id:Math.floor(Math.random() * 10),
+      id:Math.random(),
+      //id:Math.floor(Math.random() * 10),
       title,
       completed:false
     }
