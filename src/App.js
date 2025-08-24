@@ -40,13 +40,15 @@ function App() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body : JSON.stringify(todo)
+      //body : JSON.stringify(todo)
+      body: JSON.stringify({ ...todo, id: Number(todo.id) })
     })
     setTodos(prevState => [...prevState,todo])
   }
 
-  let deleteTodo = (todoId) => {
-    fetch(`http://localhost:3001/todos/${todoId}`,{
+  let deleteTodo = async(todoId) => {
+     const id = Number(todoId);
+    await fetch(`http://localhost:3001/todos/${id}`,{
       method : "DELETE"
     })
     setTodos(prevState => {
@@ -56,13 +58,15 @@ function App() {
     })
   }
 
-  let updateTodo = (todo) => {
-    fetch(`http://localhost:3001/todos/${todo.id}` ,{
+  let updateTodo = async (todo) => {
+    const id = Number(todo.id);
+    await fetch(`http://localhost:3001/todos/${id}` ,{
       method : "PATCH",
       headers: {
         'Content-Type': 'application/json'
       },
-      body : JSON.stringify(todo)
+      //body : JSON.stringify(todo)
+       body: JSON.stringify({ ...todo, id })
     })
     setTodos(prevState => {
       return prevState.map(t => {
