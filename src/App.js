@@ -6,6 +6,7 @@ import CheckAllAndRemaining from './components/CheckAllAndRemaining.js';
 import TodoFilters from './components/TodoFilters.js';
 import ClearCompletedBtn from './components/ClearCompletedBtn.js';
 import { useCallback, useEffect, useState } from 'react';
+import Logo from './components/Logo.js';
 
 function App() {
 
@@ -103,8 +104,26 @@ function App() {
 
   let remainingCount = todos.filter(t => !t.completed).length
 
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
+
   return (
+    <>
+    <Logo />
     <div className="todo-app-container">
+      <button 
+        onClick={() => setDarkMode(!darkMode)} 
+        style={{ margin: "10px", padding: "8px 12px", borderRadius: "6px" }}
+      >
+        {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
+      </button>
       <div className="todo-app">
         <h2>Todo App</h2>
         <TodoForm addTodo={addTodo}/>
@@ -116,6 +135,8 @@ function App() {
         </div>
       </div>
     </div>
+    </>
+    
   );
 }
 
